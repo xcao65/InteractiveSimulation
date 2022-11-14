@@ -8,6 +8,8 @@
 [Bb]uilds/
 Assets/AssetStoreTools*
 
+.venv/
+
 # Visual Studio 2015 cache directory
 .vs/
 .vscode/
