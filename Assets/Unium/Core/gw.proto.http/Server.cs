@@ -43,7 +43,7 @@ namespace gw.proto.http
 
     public class Settings
     {
-        public IPAddress    Address     = IPAddress.Any;
+        public IPAddress    Address     = IPAddress.Loopback;
         public int          Port        = 8342;
         public int          Timeout     = 3 * 1000; // milliseconds
         public int          PostLimit   = 1 * 1024 * 1024; // 1 Mb

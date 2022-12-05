@@ -46,17 +46,18 @@ namespace gw.proto.utils
 
         public static string DetectPublicIPAddress()
         {
-            if( NetworkInterface.GetIsNetworkAvailable() == false )
-            {
-                return IPAddress.Any.ToString(); // 0.0.0.0
-            }
+            return IPAddress.Loopback.ToString();
+            // if( NetworkInterface.GetIsNetworkAvailable() == false )
+            // {
+            //     return IPAddress.Any.ToString(); // 0.0.0.0
+            // }
 
-            return Dns.GetHostEntry( Dns.GetHostName() )
-                .AddressList
-                .Where( addr => addr.AddressFamily == AddressFamily.InterNetwork && !IPAddress.IsLoopback( addr ) )
-                .LastOrDefault() // seems to be the convention :o
-                .ToString()
-            ;
+            // return Dns.GetHostEntry( Dns.GetHostName() )
+            //     .AddressList
+            //     .Where( addr => addr.AddressFamily == AddressFamily.InterNetwork && !IPAddress.IsLoopback( addr ) )
+            //     .LastOrDefault() // seems to be the convention :o
+            //     .ToString()
+            // ;
         }
 
         public static NameValueCollection ParseQueryString( string query )

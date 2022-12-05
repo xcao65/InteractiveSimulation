@@ -18,7 +18,12 @@ public class NPC : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         var psi = new ProcessStartInfo();
-        psi.FileName = $@"{Application.dataPath}/Scripts/NPCBrain/.venv/bin/python3.7";
+        psi.FileName = $@"{Application.dataPath}/Scripts/NPCBrain/.venv/";
+
+        if (Application.platform == RuntimePlatform.WindowsPlayer)
+            psi.FileName += "Scripts/python.exe";
+        else
+            psi.FileName += "bin/python3.7";
 
         UnityEngine.Debug.Log($"File path to python executable: {psi.FileName}");
 
