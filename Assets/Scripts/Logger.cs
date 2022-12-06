@@ -28,6 +28,8 @@ public class Logger : MonoBehaviour
 
     public void Log(string log)
     {
+        return ;
+
         logs.text += $"\n{log}";
     }
 }
