@@ -26,6 +26,7 @@ public class NPC : MonoBehaviour
             psi.FileName += "bin/python3.7";
 
         UnityEngine.Debug.Log($"File path to python executable: {psi.FileName}");
+        Logger.Instance.Log($"File path to python executable: {psi.FileName}");
 
         var script = $@"{Application.dataPath}/Scripts/NPCBrain/npc_brain.py";
 

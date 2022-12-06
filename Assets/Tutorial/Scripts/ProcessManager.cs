@@ -35,13 +35,24 @@ public class ProcessManager
         m_IsListening = true;
 
         UnityEngine.Debug.Log("Started process thread.");
+        Logger.Instance.Log("Started process thread.");
     }
 
     async Task ExecuteProcess(CancellationToken cancellationToken)
     {
-        UnityEngine.Debug.Log("Executing process...");
+        //UnityEngine.Debug.Log("Executing process...");
+        //Logger.Instance.Log("Executing process...");
         
-        proc = Process.Start(psi);
+        try 
+        {
+            proc = Process.Start(psi);
+        }
+        catch (Exception e)
+        {
+            Logger.Instance.Log($"Exception executing process: {e.Message}");
+        }
+
+        Logger.Instance.Log($"Exit code: {proc.ExitCode}");
     }
 
     public void Stop(int timeout = 2000)
@@ -51,7 +62,10 @@ public class ProcessManager
         if (m_ListenThread == null) return; // Not started yet
 
         if (proc != null)
+        {
             proc.Kill();
+            proc.WaitForExit(1000);
+        }
 
         m_CancellationTokenSource.Cancel();
 
